@@ -1,0 +1,45 @@
+<!-- src/app/components/experiencia/experiencia.html -->
+<section class="experiencia-card">
+  <div class="experiencia-card__header">
+    <span class="experiencia-card__subtitle">EVOLUÇÃO & FORMAÇÃO</span>
+    <h2 class="experiencia-card__title">Trajetória Acadêmica & Prática</h2>
+  </div>
+
+  <div class="experiencia-card__timeline">
+    @for (item of trajetoria(); track item.id) {
+      <article class="timeline-item">
+        <!-- Nó lateral luminoso -->
+        <div class="timeline-item__node">
+          <span class="timeline-item__node-dot"></span>
+          <span class="timeline-item__node-line"></span>
+        </div>
+
+        <!-- Conteúdo do Marco -->
+        <div class="timeline-item__content">
+          <div class="timeline-item__header">
+            <span class="timeline-item__periodo">{{ item.periodo }}</span>
+            <span
+              class="timeline-item__badge"
+              [class.timeline-item__badge--hackathon]="item.tipo === 'hackathon'"
+              [class.timeline-item__badge--estudos]="item.tipo === 'estudos'"
+              [class.timeline-item__badge--formacao]="item.tipo === 'formacao'"
+            >
+              {{ item.tipoLabel }}
+            </span>
+          </div>
+
+          <h3 class="timeline-item__titulo">{{ item.titulo }}</h3>
+          <span class="timeline-item__instituicao">{{ item.instituicao }}</span>
+          <p class="timeline-item__descricao">{{ item.descricao }}</p>
+
+          <!-- Tags de tecnologia do item -->
+          <div class="timeline-item__tags">
+            @for (tag of item.tags; track tag) {
+              <span class="timeline-item__tag">{{ tag }}</span>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,16 @@
+// src/app/app.scss
+@use '../styles/mixins' as *;
+
+.bento-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  min-height: 100vh;
+
+  @include tablet {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+}

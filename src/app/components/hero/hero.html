@@ -1,0 +1,45 @@
+<!-- src/app/components/hero/hero.html -->
+<section class="hero-card">
+  <!-- Topo do Card: Badges informativos -->
+  <div class="hero-card__top">
+    <span class="hero-card__badge-event">{{ selo() }}</span>
+    <span class="hero-card__badge-role">{{ papel() }}</span>
+  </div>
+
+  <!-- Miolo do Card: Foto e Textos Principais -->
+  <div class="hero-card__main">
+    <div class="hero-card__avatar-box">
+      <img
+        class="hero-card__avatar"
+        [src]="avatarUrl()"
+        [alt]="'Foto de perfil de ' + nome()"
+        width="130"
+        height="130"
+      />
+    </div>
+
+    <div class="hero-card__info">
+      <h1 class="hero-card__nome">{{ nome() }}</h1>
+      <h2 class="hero-card__subtitulo">{{ titulo() }}</h2>
+      <p class="hero-card__bio">{{ bio() }}</p>
+
+      <!-- Ações rápidas e indicador de status -->
+      <div class="hero-card__footer">
+        <a
+          [href]="githubUrl()"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hero-card__btn-github"
+        >
+          <span>GitHub</span>
+          <span class="hero-card__btn-arrow">↗</span>
+        </a>
+
+        <div class="hero-card__status">
+          <span class="hero-card__status-dot"></span>
+          <span>{{ status() }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

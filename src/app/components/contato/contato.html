@@ -1,0 +1,75 @@
+<!-- src/app/components/contato/contato.html -->
+<footer class="contato-card">
+  <!-- Topo: Título + Botão de Tema -->
+  <div class="contato-card__header">
+    <div class="contato-card__title-box">
+      <span class="contato-card__subtitle">CONEXÕES & REDES</span>
+      <h2 class="contato-card__title">Vamos Conversar?</h2>
+    </div>
+
+    <!-- Botão de Theme Toggle -->
+    <button
+      type="button"
+      class="contato-card__theme-btn"
+      (click)="alternarTema()"
+      [attr.aria-label]="'Alternar para tema ' + (temaAtual() === 'dark' ? 'claro' : 'escuro')"
+    >
+      @if (temaAtual() === 'dark') {
+        <span class="theme-btn__icon">☀️</span>
+        <span class="theme-btn__text">Modo Claro</span>
+      } @else {
+        <span class="theme-btn__icon">🌙</span>
+        <span class="theme-btn__text">Modo Escuro</span>
+      }
+    </button>
+  </div>
+
+  <p class="contato-card__desc">
+    Estou aberto a novas oportunidades, colaboração técnica e conexões com a comunidade de desenvolvimento.
+  </p>
+
+  <!-- Botões de Ação -->
+  <div class="contato-card__actions">
+    <!-- Botão Inteligente de Copiar E-mail -->
+    <button
+      type="button"
+      class="contato-card__btn-copiar"
+      [class.contato-card__btn-copiar--sucesso]="copiado()"
+      (click)="copiarEmail()"
+    >
+      @if (copiado()) {
+        <span class="btn-copiar__icon">✓</span>
+        <span>E-mail Copiado!</span>
+      } @else {
+        <span class="btn-copiar__icon">📋</span>
+        <span>{{ email() }}</span>
+      }
+    </button>
+
+    <!-- Enviar E-mail Direto (mailto) -->
+    <a [href]="'mailto:' + email()" class="contato-card__link">
+      <span class="contato-card__link-icon">✉️</span>
+      <span>Enviar Mensagem</span>
+    </a>
+
+    <!-- Link do GitHub -->
+    <a
+      [href]="githubUrl()"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contato-card__link"
+    >
+      <span class="contato-card__link-icon">🐙</span>
+      <span>GitHub</span>
+      <span class="contato-card__arrow">↗</span>
+    </a>
+  </div>
+
+  <!-- Assinatura Final -->
+  <div class="contato-card__footer">
+    <p class="contato-card__copyright">
+      © 2026 Guilherme Vasconcellos · Desenvolvido com <strong>Angular 22</strong> & SCSS
+    </p>
+    <span class="contato-card__pill">⚡ Proenergia Summit 2026</span>
+  </div>
+</footer>

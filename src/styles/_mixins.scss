@@ -1,0 +1,51 @@
+// src/styles/_mixins.scss
+// ─────────────────────────────────────────────────────────────
+// MIXINS UTILITÁRIOS — PROJETO CURRÍCULO DIGITAL (ANGULAR 22)
+// ─────────────────────────────────────────────────────────────
+
+// ─── 1. GLASSMORPHISM ────────────────────────────────────────
+// Efeito de "vidro fumê/translúcido" perfeito para cartões Bento Grid.
+// O backdrop-filter desfoca os elementos que estiverem ATRÁS do cartão.
+@mixin glass($blur: 16px, $opacity: 0.05) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+}
+
+// ─── 2. RESPONSIVIDADE (MOBILE-FIRST) ────────────────────────
+// @content injeta as regras CSS passadas dentro do bloco do mixin.
+// Tablet: a partir de 768px (iPad, tablets na vertical)
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+// Desktop: a partir de 1024px (Notebooks e monitores convencionais)
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+// Wide: a partir de 1440px (Monitores grandes e ultrawide)
+@mixin wide {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
+// ─── 3. TEXT TRUNCATE ────────────────────────────────────────
+// Corta textos longos de forma limpa com '...'
+@mixin text-truncate($lines: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if $lines == 1 {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  }
+}

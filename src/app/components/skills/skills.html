@@ -1,0 +1,46 @@
+<!-- src/app/components/skills/skills.html -->
+<section class="skills-card">
+  <div class="skills-card__header">
+    <div class="skills-card__title-box">
+      <span class="skills-card__subtitle">STACK & DOMÍNIO</span>
+      <h2 class="skills-card__title">Habilidades Técnicas</h2>
+    </div>
+
+    <!-- Botões de Filtro Reativos -->
+    <div class="skills-card__filtros" role="tablist" aria-label="Filtro de habilidades">
+      @for (cat of categorias(); track cat) {
+        <button
+          type="button"
+          class="skills-card__filtro-btn"
+          [class.skills-card__filtro-btn--ativo]="filtroAtivo() === cat"
+          (click)="setFiltro(cat)"
+        >
+          {{ cat }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Grid de Cards de Habilidades -->
+  <div class="skills-card__grid">
+    @for (skill of skillsFiltradas(); track skill.nome) {
+      <div class="skill-item">
+        <div class="skill-item__header">
+          <span class="skill-item__icone">{{ skill.icone }}</span>
+          <span
+            class="skill-item__badge"
+            [class.skill-item__badge--aprendizado]="skill.nivel === 'Em aprendizado'"
+            [class.skill-item__badge--introducao]="skill.nivel === 'Introdução'"
+          >
+            {{ skill.nivel }}
+          </span>
+        </div>
+
+        <h3 class="skill-item__nome">{{ skill.nome }}</h3>
+        <span class="skill-item__categoria">{{ skill.categoria }}</span>
+      </div>
+    } @empty {
+      <p class="skills-card__empty">Nenhuma habilidade cadastrada nessa categoria.</p>
+    }
+  </div>
+</section>

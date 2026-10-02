@@ -1,0 +1,196 @@
+// src/app/components/experiencia/experiencia.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: expFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.experiencia-card {
+  @include glass(20px, 0.04);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+
+  &:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+  }
+
+  &__header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  &__subtitle {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: var(--space-xs);
+  }
+
+  &__title {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+}
+
+// Item Individual da Linha do Tempo
+.timeline-item {
+  display: flex;
+  gap: var(--space-md);
+
+  @include tablet {
+    gap: var(--space-lg);
+  }
+
+  &:last-child &__node-line {
+    display: none;
+  }
+
+  // Nó e Linha Conectora
+  &__node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
+    flex-shrink: 0;
+  }
+
+  &__node-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+    border: 2px solid var(--bg-primary);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  &__node-line {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, var(--accent), rgba(255, 255, 255, 0.05));
+    margin-top: 6px;
+  }
+
+  // Caixa de Conteúdo do Marco
+  &__content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xs);
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  &__periodo {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  &__badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+
+    &--hackathon {
+      background: rgba(0, 255, 200, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(0, 255, 200, 0.3);
+    }
+
+    &--estudos {
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    &--formacao {
+      background: rgba(168, 85, 247, 0.1);
+      color: #a855f7;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+  }
+
+  &__titulo {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: var(--space-xs);
+  }
+
+  &__instituicao {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  &__descricao {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  &__tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+  }
+}
+
+@keyframes expFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

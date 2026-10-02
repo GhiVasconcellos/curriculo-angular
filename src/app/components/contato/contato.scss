@@ -1,0 +1,184 @@
+// src/app/components/contato/contato.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: contatoFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.contato-card {
+  @include glass(20px, 0.04);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+
+  &:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xs);
+  }
+
+  &__subtitle {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: var(--space-xs);
+  }
+
+  &__title {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  // Botão de Tema (Sol / Lua)
+  &__theme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+  }
+
+  &__desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 580px;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  // Área de Ações e Botões
+  &__actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  &__btn-copiar {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--accent-contrast);
+    transition: all var(--transition-fast);
+    box-shadow: 0 0 16px var(--accent-glow);
+
+    &:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    // Feedback visual quando clicado
+    &--sucesso {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.75rem 1.3rem;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: var(--border-hover);
+      color: var(--accent);
+      transform: translateY(-2px);
+      background: var(--bg-card-hover);
+    }
+  }
+
+  &__arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  &__link:hover &__arrow {
+    transform: translate(2px, -2px);
+  }
+
+  // Rodapé com créditos
+  &__footer {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: var(--space-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  &__copyright strong {
+    color: var(--text-primary);
+  }
+
+  &__pill {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+  }
+}
+
+@keyframes contatoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

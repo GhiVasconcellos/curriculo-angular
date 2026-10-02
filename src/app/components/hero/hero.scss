@@ -1,0 +1,225 @@
+// src/app/components/hero/hero.scss
+@use '../../../styles/mixins' as *;
+
+:host {
+  display: block;
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-card {
+  @include glass(20px, 0.04);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+
+  &:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+  }
+
+  // Linha superior com tags
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  &__badge-event {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.02em;
+  }
+
+  &__badge-role {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    background: rgba(0, 255, 200, 0.08);
+    border: 1px solid rgba(0, 255, 200, 0.25);
+    padding: 0.3rem 0.9rem;
+    border-radius: var(--radius-full);
+  }
+
+  // Miolo principal (Avatar + Textos)
+  &__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xl);
+
+    @include tablet {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+
+  // Caixa do avatar com o halo luminoso
+  &__avatar-box {
+    position: relative;
+    flex-shrink: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), transparent 70%);
+      z-index: -1;
+      opacity: 0.85;
+      filter: blur(4px);
+      transition: opacity var(--transition-normal);
+    }
+
+    &:hover::after {
+      opacity: 1;
+      filter: blur(6px);
+    }
+  }
+
+  &__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+    border: 3px solid var(--bg-primary);
+    background-color: var(--bg-secondary);
+
+    @include tablet {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
+  // Textos informativos
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  &__nome {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitulo {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  &__bio {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 620px;
+    margin-top: var(--space-xs);
+  }
+
+  // Rodapé do Card
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include tablet {
+      justify-content: flex-start;
+    }
+  }
+
+  &__btn-github {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__btn-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  &__btn-github:hover &__btn-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  &__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+    animation: statusPulse 2s infinite ease-in-out;
+  }
+}
+
+// Animações
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.6;
+  }
+}
